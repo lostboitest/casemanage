@@ -11,8 +11,8 @@ export function OfficialBanner() {
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
             <img
-              src="/us_flag_small.webp"
-              alt=""
+              src="./us_flag_small.webp"
+              alt="U.S. flag"
               className="w-5 h-5"
             />
             <span className="font-medium">An official website of the United States government</span>
@@ -33,8 +33,8 @@ export function OfficialBanner() {
           <div className="max-w-7xl mx-auto px-4 py-4 grid md:grid-cols-2 gap-8">
             <div className="flex gap-4">
               <img
-                src="/icon-dot-gov.svg"
-                alt=""
+                src="./icon-dot-gov.svg"
+                alt="Dot gov domain icon"
                 className="w-8 h-8"
               />
               <div>
