@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function RatingSidebar() {
@@ -31,14 +31,14 @@ export function RatingSidebar() {
         <Button
           variant="default"
           size="sm"
-          className="bg-[#005EA2] hover:bg-[#005EA2]/90 text-white rounded-none px-2 py-6 flex items-center gap-1 shadow-lg writing-mode-vertical text-xs font-medium tracking-tight"
+          className="bg-[#005EA2] hover:bg-[#005EA2]/90 text-white rounded-none px-2 py-6 flex flex-col items-center gap-2 shadow-lg writing-mode-vertical text-xs font-medium tracking-tight"
           onClick={() => {
             // TODO: Implement rating functionality
             alert("Rating functionality coming soon!");
           }}
         >
-          <ChevronDown className="h-3 w-3 transform rotate-90" />
           Rate This Page
+          <ChevronUp className="h-3 w-3" />
         </Button>
       </div>
 
