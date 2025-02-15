@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, LogIn, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
+import { RatingSidebar } from "@/components/RatingSidebar";
 
 export default function SearchPage() {
   const [caseNumber, setCaseNumber] = useState("");
@@ -19,6 +20,7 @@ export default function SearchPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
+      <RatingSidebar />
       <main className="max-w-7xl mx-auto px-4 py-8 flex-1">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {/* Search Card */}
