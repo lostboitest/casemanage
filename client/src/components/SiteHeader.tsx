@@ -50,21 +50,20 @@ export function SiteHeader() {
               </div>
             </div>
 
-            {/* User Menu */}
+            {/* User Menu - Updated styling */}
             {user && (
               <div className="flex items-center gap-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button 
-                      variant="ghost" 
-                      size="icon"
-                      className="bg-white/10 hover:bg-white/20"
+                      variant="secondary" 
+                      className="bg-white/20 hover:bg-white/30 text-white flex items-center gap-2"
                     >
-                      <Settings className="h-5 w-5 text-white" />
-                      <span className="sr-only">Settings</span>
+                      <Settings className="h-4 w-4" />
+                      <span>Settings</span>
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
+                  <DropdownMenuContent align="end" className="w-48">
                     <Link href="/admin/profile">
                       <DropdownMenuItem>
                         <Settings className="mr-2 h-4 w-4" />
