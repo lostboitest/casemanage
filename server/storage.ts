@@ -30,24 +30,42 @@ export class DatabaseStorage implements IStorage {
   sessionStore: session.Store;
 
   constructor() {
-    this.sessionStore = new PostgresSessionStore({
-      conObject: {
-        connectionString: process.env.DATABASE_URL,
-        ssl: true,
-      },
-      createTableIfMissing: true,
-      pruneSessionInterval: false,
-    });
+    try {
+      this.sessionStore = new PostgresSessionStore({
+        conObject: {
+          connectionString: process.env.DATABASE_URL,
+          ssl: process.env.NODE_ENV === 'production',
+        },
+        tableName: 'session',
+        createTableIfMissing: true,
+        pruneSessionInterval: false,
+      });
+    } catch (error) {
+      console.error('Failed to initialize session store:', error);
+      // Fallback to memory store in case of connection issues
+      const MemoryStore = session.MemoryStore;
+      this.sessionStore = new MemoryStore();
+    }
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.id, id));
-    return user;
+    try {
+      const [user] = await db.select().from(users).where(eq(users.id, id));
+      return user;
+    } catch (error) {
+      console.error('Error getting user:', error);
+      return undefined;
+    }
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    const [user] = await db.select().from(users).where(eq(users.username, username));
-    return user;
+    try {
+      const [user] = await db.select().from(users).where(eq(users.username, username));
+      return user;
+    } catch (error) {
+      console.error('Error getting user by username:', error);
+      return undefined;
+    }
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
