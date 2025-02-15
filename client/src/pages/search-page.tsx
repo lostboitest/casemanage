@@ -3,8 +3,7 @@ import { useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, LogIn, ExternalLink } from "lucide-react";
-import { Link } from "wouter";
+import { Search, ExternalLink } from "lucide-react";
 import { RatingSidebar } from "@/components/RatingSidebar";
 
 export default function SearchPage() {
@@ -22,9 +21,9 @@ export default function SearchPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <RatingSidebar />
       <main className="max-w-7xl mx-auto px-4 py-8 flex-1">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2">
           {/* Search Card */}
-          <Card className="md:col-span-2 lg:col-span-3">
+          <Card className="md:col-span-2">
             <CardHeader className="text-center">
               <CardTitle className="text-3xl font-bold text-[#1a4480]">
                 Case Search
@@ -45,24 +44,6 @@ export default function SearchPage() {
                   </Button>
                 </div>
               </form>
-            </CardContent>
-          </Card>
-
-          {/* Quick Links */}
-          <Card>
-            <CardHeader>
-              <CardTitle>Admin Access</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                Access the admin portal to manage cases and update records.
-              </p>
-              <Link href="/auth">
-                <Button variant="outline" className="w-full">
-                  <LogIn className="mr-2 h-4 w-4" />
-                  Admin Portal
-                </Button>
-              </Link>
             </CardContent>
           </Card>
 
