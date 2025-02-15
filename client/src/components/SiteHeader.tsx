@@ -11,11 +11,23 @@ export function SiteHeader() {
         <div className="max-w-7xl mx-auto px-4 py-8">
           <div className="flex items-center gap-8">
             <div className="flex-shrink-0">
-              <img
-                src="/ojp-seal.png"
-                alt="Department of Justice seal"
-                className="w-24 h-24"
-              />
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 150 150" className="w-24 h-24">
+                {/* DOJ Eagle Circle */}
+                <circle cx="75" cy="75" r="70" fill="#ffffff"/>
+                <circle cx="75" cy="75" r="65" fill="#1a4480"/>
+                <circle cx="75" cy="75" r="60" fill="#ffffff"/>
+
+                {/* DOJ Eagle */}
+                <path fill="#1a4480" d="M75 25C45 25 25 45 25 75C25 105 45 125 75 125C105 125 125 105 125 75C125 45 105 25 75 25zM75 115C50 115 35 100 35 75C35 50 50 35 75 35C100 35 115 50 115 75C115 100 100 115 75 115z"/>
+
+                {/* Stars */}
+                <g fill="#1a4480">
+                  <circle cx="75" cy="45" r="3"/>
+                  <circle cx="105" cy="75" r="3"/>
+                  <circle cx="75" cy="105" r="3"/>
+                  <circle cx="45" cy="75" r="3"/>
+                </g>
+              </svg>
             </div>
             <div>
               <div className="text-sm font-semibold tracking-wide uppercase mb-1">U.S. DEPARTMENT OF JUSTICE</div>
