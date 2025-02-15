@@ -27,14 +27,14 @@ export function RatingSidebar() {
         <Button
           variant="default"
           size="sm"
-          className="flex flex-col items-center gap-2 bg-[#1E4F91] hover:bg-[#1E4F91]/90 text-white rounded-none px-2 py-6 shadow-lg writing-mode-vertical text-xs font-medium tracking-tight transition-colors transform rotate-180"
+          className="writing-mode-vertical flex flex-col-reverse items-center justify-between bg-[#1E4F91] hover:bg-[#1E4F91]/80 text-white rounded-none px-2 py-6 shadow-lg text-xs font-medium tracking-tight transition-colors min-h-[160px]"
           onClick={() => {
             // TODO: Implement rating functionality
             alert("Rating functionality coming soon!");
           }}
         >
+          <ChevronUp className="h-4 w-4 transform -rotate-90" />
           Rate This Page
-          <ChevronUp className="h-3 w-3 transform rotate-180" />
         </Button>
       </div>
 
