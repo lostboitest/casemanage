@@ -2,13 +2,36 @@ import { pgTable, text, serial, timestamp, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// User schema definition
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Define types for complex JSON fields
+// Rest of the schema remains unchanged
+export const cases = pgTable("cases", {
+  id: serial("id").primaryKey(),
+  caseNumber: text("case_number").notNull().unique(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  status: text("status").notNull(),
+  petitioner: text("petitioner").notNull(),
+  respondent: text("respondent").notNull(),
+  docketedDate: timestamp("docketed_date").notNull(),
+  courtProceedings: jsonb("court_proceedings").$type<Proceeding[]>(),
+  partiesInvolved: jsonb("parties_involved").$type<Party[]>(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+// User schema validation
+export const insertUserSchema = createInsertSchema(users);
+export type InsertUser = z.infer<typeof insertUserSchema>;
+export type User = typeof users.$inferSelect;
+
+// Types for complex fields
 type Proceeding = {
   date: string;
   description: string;
@@ -19,32 +42,6 @@ type Party = {
   role: string;
   contact: string;
 };
-
-export const cases = pgTable("cases", {
-  id: serial("id").primaryKey(),
-  // Section 1: Basic Case Information
-  caseNumber: text("case_number").notNull().unique(),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
-  status: text("status").notNull(),
-  petitioner: text("petitioner").notNull().default("Unknown"),
-  respondent: text("respondent").notNull().default("Unknown"),
-  docketedDate: timestamp("docketed_date").notNull().default(new Date()),
-
-  // Section 2: Proceedings with dates
-  courtProceedings: jsonb("court_proceedings").notNull().default([]).$type<Proceeding[]>(),
-
-  // Section 3: Parties with contact info
-  partiesInvolved: jsonb("parties_involved").notNull().default([]).$type<Party[]>(),
-
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
-
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
-});
 
 const proceedingSchema = z.object({
   date: z.string(),
@@ -76,9 +73,6 @@ export const insertCaseSchema = createInsertSchema(cases)
     docketedDate: z.string().transform((str) => new Date(str)),
   });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
 export type InsertCase = z.infer<typeof insertCaseSchema>;
 export type Case = typeof cases.$inferSelect;
-export type Proceeding = z.infer<typeof proceedingSchema>;
-export type Party = z.infer<typeof partySchema>;
+export type { Proceeding, Party };

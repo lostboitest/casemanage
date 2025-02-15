@@ -2,6 +2,7 @@ import { cases, users, type User, type InsertUser, type Case, type InsertCase } 
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import session from "express-session";
+import { MemoryStore } from "memorystore";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -23,8 +24,8 @@ export class DatabaseStorage implements IStorage {
 
   constructor() {
     // Use MemoryStore for sessions to avoid PostgreSQL connection issues
-    const MemoryStore = session.MemoryStore;
-    this.sessionStore = new MemoryStore();
+    const MemorySessionStore = MemoryStore(session);
+    this.sessionStore = new MemorySessionStore();
   }
 
   async getUser(id: number): Promise<User | undefined> {
@@ -48,45 +49,80 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const [user] = await db.insert(users).values(insertUser).returning();
-    return user;
+    try {
+      const [user] = await db.insert(users).values(insertUser).returning();
+      return user;
+    } catch (error) {
+      console.error('Error creating user:', error);
+      throw new Error('Failed to create user');
+    }
   }
 
   async getCases(): Promise<Case[]> {
-    return await db.select().from(cases);
+    try {
+      return await db.select().from(cases);
+    } catch (error) {
+      console.error('Error fetching cases:', error);
+      return [];
+    }
   }
 
   async getCase(id: number): Promise<Case | undefined> {
-    const [case_] = await db.select().from(cases).where(eq(cases.id, id));
-    return case_;
+    try {
+      const [case_] = await db.select().from(cases).where(eq(cases.id, id));
+      return case_;
+    } catch (error) {
+      console.error('Error fetching case:', error);
+      return undefined;
+    }
   }
 
   async getCaseByNumber(caseNumber: string): Promise<Case | undefined> {
-    const [case_] = await db.select().from(cases).where(eq(cases.caseNumber, caseNumber));
-    return case_;
+    try {
+      const [case_] = await db.select().from(cases).where(eq(cases.caseNumber, caseNumber));
+      return case_;
+    } catch (error) {
+      console.error('Error fetching case by number:', error);
+      return undefined;
+    }
   }
 
   async createCase(caseData: InsertCase): Promise<Case> {
-    const [case_] = await db.insert(cases).values(caseData).returning();
-    return case_;
+    try {
+      const [case_] = await db.insert(cases).values(caseData).returning();
+      return case_;
+    } catch (error) {
+      console.error('Error creating case:', error);
+      throw new Error('Failed to create case');
+    }
   }
 
   async updateCase(id: number, caseData: Partial<InsertCase>): Promise<Case> {
-    const [case_] = await db
-      .update(cases)
-      .set({ ...caseData, updatedAt: new Date() })
-      .where(eq(cases.id, id))
-      .returning();
+    try {
+      const [case_] = await db
+        .update(cases)
+        .set({ ...caseData, updatedAt: new Date() })
+        .where(eq(cases.id, id))
+        .returning();
 
-    if (!case_) {
-      throw new Error("Case not found");
+      if (!case_) {
+        throw new Error("Case not found");
+      }
+
+      return case_;
+    } catch (error) {
+      console.error('Error updating case:', error);
+      throw new Error('Failed to update case');
     }
-
-    return case_;
   }
 
   async deleteCase(id: number): Promise<void> {
-    await db.delete(cases).where(eq(cases.id, id));
+    try {
+      await db.delete(cases).where(eq(cases.id, id));
+    } catch (error) {
+      console.error('Error deleting case:', error);
+      throw new Error('Failed to delete case');
+    }
   }
 }
 
