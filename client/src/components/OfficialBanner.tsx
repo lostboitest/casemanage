@@ -11,7 +11,7 @@ export function OfficialBanner() {
         <div className="flex items-center gap-2">
           <div className="flex items-center gap-1">
             <img
-              src="/icon-dot-gov.svg"
+              src="/us_flag_small.webp"
               alt=""
               className="w-5 h-5"
             />
