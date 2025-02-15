@@ -133,9 +133,31 @@ export default function SearchPage() {
         </div>
       </main>
 
-      {/* Footer */}
+      {/* Footer with Agency Logos */}
       <footer className="mt-auto border-t border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 py-6">
+          {/* Agency Logos */}
+          <div className="flex justify-center gap-8 mb-6">
+            <a href="https://bja.ojp.gov/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/bja_0.png" alt="BJA Logo" className="h-8" />
+            </a>
+            <a href="https://bjs.ojp.gov/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/bjs.png" alt="BJS Logo" className="h-8" />
+            </a>
+            <a href="https://nij.ojp.gov/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/nij.png" alt="NIJ Logo" className="h-8" />
+            </a>
+            <a href="https://ojjdp.ojp.gov/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/ojjdp.png" alt="OJJDP Logo" className="h-8" />
+            </a>
+            <a href="https://ovc.ojp.gov/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/ovc.png" alt="OVC Logo" className="h-8" />
+            </a>
+            <a href="https://smart.ojp.gov/" target="_blank" rel="noopener noreferrer">
+              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/smart.png" alt="SMART Logo" className="h-8" />
+            </a>
+          </div>
+
           <div className="text-center text-sm text-gray-600 mb-4">
             999 N. Capitol St., NE, Washington, DC 20531
           </div>
