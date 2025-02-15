@@ -136,8 +136,51 @@ export default function SearchPage() {
       {/* Footer with Agency Logos */}
       <footer className="mt-auto border-t border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          {/* DOJ Logo and Text */}
-          <div className="flex justify-center items-center mb-8">
+          <div className="flex justify-between items-center gap-12">
+            {/* Left side - Agency Logos */}
+            <div className="flex flex-wrap gap-8">
+              <a href="https://bja.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                        fill="#162e51" fontSize="24" fontWeight="bold">BJA</text>
+                </svg>
+              </a>
+              <a href="https://bjs.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                        fill="#162e51" fontSize="24" fontWeight="bold">BJS</text>
+                </svg>
+              </a>
+              <a href="https://nij.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                        fill="#162e51" fontSize="24" fontWeight="bold">NIJ</text>
+                </svg>
+              </a>
+              <a href="https://ojjdp.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                        fill="#162e51" fontSize="24" fontWeight="bold">OJJDP</text>
+                </svg>
+              </a>
+              <a href="https://ovc.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                        fill="#162e51" fontSize="24" fontWeight="bold">OVC</text>
+                </svg>
+              </a>
+              <a href="https://smart.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                  <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                        fill="#162e51" fontSize="24" fontWeight="bold">SMART</text>
+                </svg>
+              </a>
+            </div>
+
+            {/* Vertical Divider */}
+            <div className="w-px h-20 bg-black"></div>
+
+            {/* Right side - DOJ Logo and Text */}
             <div className="flex items-center gap-4">
               <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 150 150" className="w-24 h-24">
                 {/* DOJ Eagle Circle */}
@@ -166,91 +209,53 @@ export default function SearchPage() {
             </div>
           </div>
 
-          {/* Agency Logos */}
-          <div className="flex justify-center gap-8 mb-6">
-            <a href="https://bja.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
-                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
-                      fill="#162e51" fontSize="24" fontWeight="bold">BJA</text>
-              </svg>
-            </a>
-            <a href="https://bjs.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
-                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
-                      fill="#162e51" fontSize="24" fontWeight="bold">BJS</text>
-              </svg>
-            </a>
-            <a href="https://nij.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
-                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
-                      fill="#162e51" fontSize="24" fontWeight="bold">NIJ</text>
-              </svg>
-            </a>
-            <a href="https://ojjdp.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
-                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
-                      fill="#162e51" fontSize="24" fontWeight="bold">OJJDP</text>
-              </svg>
-            </a>
-            <a href="https://ovc.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
-                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
-                      fill="#162e51" fontSize="24" fontWeight="bold">OVC</text>
-              </svg>
-            </a>
-            <a href="https://smart.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
-              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
-                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
-                      fill="#162e51" fontSize="24" fontWeight="bold">SMART</text>
-              </svg>
-            </a>
+          <div className="mt-6">
+            <div className="text-center text-sm text-gray-600 mb-4">
+              999 N. Capitol St., NE, Washington, DC 20531
+            </div>
+            <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[#1a4480]">
+              <li>
+                <a href="https://www.ojp.gov/accessibility" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Accessibility
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ojp.gov/plain-language" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Plain Language
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ojp.gov/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ojp.gov/legal-policies-and-disclaimers" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Legal Policies and Disclaimer
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ojp.gov/about/no-fear-act" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  No FEAR Act
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ojp.gov/freedom-information-act-foia" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Freedom of Information Act
+                </a>
+              </li>
+              <li>
+                <a href="https://www.usa.gov" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  USA.gov
+                </a>
+              </li>
+              <li>
+                <a href="https://www.justice.gov" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  Justice.gov
+                </a>
+              </li>
+            </ul>
           </div>
-
-          <div className="text-center text-sm text-gray-600 mb-4">
-            999 N. Capitol St., NE, Washington, DC 20531
-          </div>
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[#1a4480]">
-            <li>
-              <a href="https://www.ojp.gov/accessibility" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Accessibility
-              </a>
-            </li>
-            <li>
-              <a href="https://www.ojp.gov/plain-language" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Plain Language
-              </a>
-            </li>
-            <li>
-              <a href="https://www.ojp.gov/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="https://www.ojp.gov/legal-policies-and-disclaimers" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Legal Policies and Disclaimer
-              </a>
-            </li>
-            <li>
-              <a href="https://www.ojp.gov/about/no-fear-act" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                No FEAR Act
-              </a>
-            </li>
-            <li>
-              <a href="https://www.ojp.gov/freedom-information-act-foia" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Freedom of Information Act
-              </a>
-            </li>
-            <li>
-              <a href="https://www.usa.gov" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                USA.gov
-              </a>
-            </li>
-            <li>
-              <a href="https://www.justice.gov" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                Justice.gov
-              </a>
-            </li>
-          </ul>
         </div>
       </footer>
     </div>
