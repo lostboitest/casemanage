@@ -10,6 +10,7 @@ import CaseDetails from "@/pages/case-details";
 import AuthPage from "@/pages/auth-page";
 import AdminDashboard from "@/pages/admin/dashboard";
 import CaseForm from "@/pages/admin/case-form";
+import ProfileSettings from "@/pages/admin/profile-settings";
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <ProtectedRoute path="/admin" component={AdminDashboard} />
       <ProtectedRoute path="/admin/case/new" component={CaseForm} />
       <ProtectedRoute path="/admin/case/:id/edit" component={CaseForm} />
+      <ProtectedRoute path="/admin/profile" component={ProfileSettings} />
       <Route component={NotFound} />
     </Switch>
   );
