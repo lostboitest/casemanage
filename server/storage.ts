@@ -2,14 +2,6 @@ import { cases, users, type User, type InsertUser, type Case, type InsertCase } 
 import { db } from "./db";
 import { eq } from "drizzle-orm";
 import session from "express-session";
-import connectPg from "connect-pg-simple";
-import { neonConfig } from '@neondatabase/serverless';
-import { WebSocket } from 'ws';
-
-// Enable WebSocket pooling for Neon database
-neonConfig.webSocketConstructor = WebSocket;
-
-const PostgresSessionStore = connectPg(session);
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -30,22 +22,9 @@ export class DatabaseStorage implements IStorage {
   sessionStore: session.Store;
 
   constructor() {
-    try {
-      this.sessionStore = new PostgresSessionStore({
-        conObject: {
-          connectionString: process.env.DATABASE_URL,
-          ssl: process.env.NODE_ENV === 'production',
-        },
-        tableName: 'session',
-        createTableIfMissing: true,
-        pruneSessionInterval: false,
-      });
-    } catch (error) {
-      console.error('Failed to initialize session store:', error);
-      // Fallback to memory store in case of connection issues
-      const MemoryStore = session.MemoryStore;
-      this.sessionStore = new MemoryStore();
-    }
+    // Use MemoryStore for sessions to avoid PostgreSQL connection issues
+    const MemoryStore = session.MemoryStore;
+    this.sessionStore = new MemoryStore();
   }
 
   async getUser(id: number): Promise<User | undefined> {
