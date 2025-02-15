@@ -31,7 +31,7 @@ export function RatingSidebar() {
         <Button
           variant="default"
           size="sm"
-          className="bg-[#005EA2] hover:bg-[#005EA2]/90 text-white rounded-none px-2 py-6 flex flex-col items-center gap-2 shadow-lg writing-mode-vertical text-xs font-medium tracking-tight"
+          className="bg-[#1E4F91] hover:bg-[#1E4F91]/90 text-white rounded-none px-2 py-6 flex flex-col items-center gap-2 shadow-lg writing-mode-vertical text-xs font-medium tracking-tight transition-colors"
           onClick={() => {
             // TODO: Implement rating functionality
             alert("Rating functionality coming soon!");
@@ -48,7 +48,7 @@ export function RatingSidebar() {
           <Button
             variant="outline"
             size="icon"
-            className="bg-[#F6C51B] hover:bg-[#F6C51B]/90 border-none text-black rounded-full w-16 h-20 shadow-lg flex flex-col items-center justify-center gap-2 p-0"
+            className="bg-[#FFC107] hover:bg-[#FFC107]/80 border-none text-black rounded-full w-16 h-20 shadow-lg flex flex-col items-center justify-center gap-2 p-0 transition-colors"
             onClick={scrollToTop}
           >
             <div className="bg-white rounded-full p-2.5 shadow-md">
