@@ -1,41 +1,37 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Star, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function RatingSidebar() {
-  const [showButtons, setShowButtons] = useState(true);
+  const [showTopButton, setShowTopButton] = useState(false);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Hide buttons when near the footer
+  // Show top button only after scrolling past resources section
   const handleScroll = () => {
-    const scrollY = window.scrollY;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    const footerHeight = 300; // Approximate footer height
-    const showThreshold = documentHeight - windowHeight - footerHeight;
-
-    setShowButtons(scrollY < showThreshold);
+    const resourcesSection = document.querySelector('#resources-section');
+    if (resourcesSection) {
+      const resourcesPosition = resourcesSection.getBoundingClientRect().top;
+      setShowTopButton(resourcesPosition < 0);
+    }
   };
 
   // Add scroll event listener
-  useState(() => {
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  if (!showButtons) return null;
-
   return (
     <>
       {/* Rate this page button - Left side */}
-      <div className="fixed left-0 bottom-40 p-2 z-[100]">
+      <div className="fixed left-4 bottom-8 z-[100]">
         <Button
           variant="outline"
           size="icon"
-          className="bg-white hover:bg-gray-100 border-gray-200"
+          className="bg-white hover:bg-gray-100 border-gray-200 shadow-md"
           onClick={() => {
             // TODO: Implement rating functionality
             alert("Rating functionality coming soon!");
@@ -46,16 +42,18 @@ export function RatingSidebar() {
       </div>
 
       {/* Top button - Right side */}
-      <div className="fixed right-0 bottom-40 p-2 z-[100]">
-        <Button
-          variant="outline"
-          size="icon"
-          className="bg-white hover:bg-gray-100 border-gray-200"
-          onClick={scrollToTop}
-        >
-          <ChevronUp className="h-4 w-4" />
-        </Button>
-      </div>
+      {showTopButton && (
+        <div className="fixed right-4 bottom-8 z-[100]">
+          <Button
+            variant="outline"
+            size="icon"
+            className="bg-white hover:bg-gray-100 border-gray-200 shadow-md"
+            onClick={scrollToTop}
+          >
+            <ChevronUp className="h-4 w-4" />
+          </Button>
+        </div>
+      )}
     </>
   );
 }

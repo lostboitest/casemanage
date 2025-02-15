@@ -67,7 +67,7 @@ export default function SearchPage() {
           </Card>
 
           {/* Resources */}
-          <Card>
+          <Card id="resources-section">
             <CardHeader>
               <CardTitle>Resources</CardTitle>
             </CardHeader>
