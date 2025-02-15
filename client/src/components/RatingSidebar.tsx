@@ -31,7 +31,7 @@ export function RatingSidebar() {
         <Button
           variant="default"
           size="sm"
-          className="bg-[#005EA2] hover:bg-[#005EA2]/90 text-white rounded-none px-4 py-6 flex items-center gap-2 shadow-md"
+          className="bg-[#005EA2] hover:bg-[#005EA2]/90 text-white rounded-none px-3 py-8 flex items-center gap-1 shadow-md writing-mode-vertical text-sm font-medium"
           onClick={() => {
             // TODO: Implement rating functionality
             alert("Rating functionality coming soon!");
@@ -48,10 +48,13 @@ export function RatingSidebar() {
           <Button
             variant="outline"
             size="icon"
-            className="bg-[#F6C51B] hover:bg-[#F6C51B]/90 border-none text-black rounded-full w-12 h-12 shadow-md"
+            className="bg-[#F6C51B] hover:bg-[#F6C51B]/90 border-none text-black rounded-full w-14 h-16 shadow-md flex flex-col items-center justify-center gap-1 p-0"
             onClick={scrollToTop}
           >
-            <ChevronUp className="h-6 w-6" />
+            <div className="bg-white rounded-full p-2 shadow-sm">
+              <ChevronUp className="h-4 w-4" />
+            </div>
+            <span className="text-[10px] font-medium mt-1">Top</span>
           </Button>
         </div>
       )}
