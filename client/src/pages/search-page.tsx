@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, LogIn } from "lucide-react";
+import { Link } from "wouter";
 
 export default function SearchPage() {
   const [caseNumber, setCaseNumber] = useState("");
@@ -42,14 +43,12 @@ export default function SearchPage() {
         </CardContent>
       </Card>
 
-      <Button
-        variant="ghost"
-        className="mt-4"
-        onClick={() => setLocation("/auth")}
-      >
-        <LogIn className="mr-2 h-4 w-4" />
-        Admin Portal
-      </Button>
+      <Link href="/auth" className="mt-4">
+        <Button variant="ghost">
+          <LogIn className="mr-2 h-4 w-4" />
+          Admin Portal
+        </Button>
+      </Link>
     </div>
   );
 }
