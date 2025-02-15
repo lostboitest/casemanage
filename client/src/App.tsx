@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { AuthProvider } from "./hooks/use-auth";
 import { ProtectedRoute } from "./lib/protected-route";
@@ -14,9 +14,12 @@ import CaseForm from "@/pages/admin/case-form";
 import ProfileSettings from "@/pages/admin/profile-settings";
 
 function Router() {
+  const [location] = useLocation();
+  const showHeader = !location.startsWith("/admin");
+
   return (
     <>
-      <SiteHeader />
+      {showHeader && <SiteHeader />}
       <Switch>
         <Route path="/" component={SearchPage} />
         <Route path="/case/:caseNumber" component={CaseDetails} />
