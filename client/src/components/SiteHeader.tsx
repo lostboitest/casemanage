@@ -12,7 +12,7 @@ export function SiteHeader() {
           <div className="flex items-center gap-8">
             <div className="flex-shrink-0">
               <img
-                src="./ojp-seal.png"
+                src="/ojp-seal.png"
                 alt="Department of Justice seal"
                 className="w-24 h-24"
               />
