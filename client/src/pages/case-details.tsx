@@ -6,7 +6,7 @@ import { Loader2, ArrowLeft, Download } from "lucide-react";
 import type { Case } from "@shared/schema";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import CasePDF from "@/components/CasePDF";
-import { SiteHeader } from "@/components/SiteHeader";
+import { RatingSidebar } from "@/components/RatingSidebar";
 
 export default function CaseDetails() {
   const { caseNumber } = useParams();
@@ -27,7 +27,6 @@ export default function CaseDetails() {
   if (!caseData) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <SiteHeader />
         <main className="max-w-7xl mx-auto px-4 py-8">
           <Card className="max-w-3xl mx-auto">
             <CardContent className="pt-6">
@@ -48,7 +47,7 @@ export default function CaseDetails() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <SiteHeader />
+      <RatingSidebar />
       <main className="max-w-7xl mx-auto px-4 py-8">
         <Card className="max-w-3xl mx-auto">
           <CardContent className="space-y-8 pt-6">
@@ -113,7 +112,7 @@ export default function CaseDetails() {
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">Court Proceedings</h3>
               <div className="space-y-4">
-                {caseData.courtProceedings.map((proceeding, index) => (
+                {caseData.courtProceedings?.map((proceeding, index) => (
                   <div key={index} className="bg-muted/50 p-4 rounded-lg">
                     <div className="flex justify-between items-start mb-2">
                       <span className="font-medium">
@@ -123,7 +122,7 @@ export default function CaseDetails() {
                     <p className="text-muted-foreground">{proceeding.description}</p>
                   </div>
                 ))}
-                {caseData.courtProceedings.length === 0 && (
+                {!caseData.courtProceedings?.length && (
                   <p className="text-muted-foreground italic">No proceedings recorded</p>
                 )}
               </div>
@@ -133,7 +132,7 @@ export default function CaseDetails() {
             <div className="space-y-4">
               <h3 className="text-xl font-semibold">Parties Involved</h3>
               <div className="grid gap-4 md:grid-cols-2">
-                {caseData.partiesInvolved.map((party, index) => (
+                {caseData.partiesInvolved?.map((party, index) => (
                   <div key={index} className="bg-muted/50 p-4 rounded-lg">
                     <h4 className="font-medium mb-2">{party.name}</h4>
                     <div className="space-y-1 text-sm">
@@ -146,7 +145,7 @@ export default function CaseDetails() {
                     </div>
                   </div>
                 ))}
-                {caseData.partiesInvolved.length === 0 && (
+                {!caseData.partiesInvolved?.length && (
                   <p className="text-muted-foreground italic">No parties recorded</p>
                 )}
               </div>
