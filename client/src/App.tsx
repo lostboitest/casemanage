@@ -15,7 +15,7 @@ import ProfileSettings from "@/pages/admin/profile-settings";
 
 function Router() {
   const [location] = useLocation();
-  const showHeader = !location.startsWith("/admin");
+  const showHeader = !location.includes("/admin");
 
   return (
     <>
