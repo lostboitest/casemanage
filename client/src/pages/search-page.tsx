@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, LogIn } from "lucide-react";
+import { Search, LogIn, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 
 export default function SearchPage() {
@@ -70,11 +70,51 @@ export default function SearchPage() {
               <CardTitle>Resources</CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>• Case Filing Guidelines</li>
-                <li>• Document Templates</li>
-                <li>• Frequently Asked Questions</li>
-                <li>• Contact Information</li>
+              <ul className="space-y-3 text-sm">
+                <li>
+                  <a 
+                    href="https://www.justice.gov/grants/resources/grant-case-filing" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center text-[#1a4480] hover:text-[#1a4480]/80"
+                  >
+                    Case Filing Guidelines
+                    <ExternalLink className="ml-1 h-3 w-3" />
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.ojp.gov/library/publications/document-templates" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center text-[#1a4480] hover:text-[#1a4480]/80"
+                  >
+                    Document Templates
+                    <ExternalLink className="ml-1 h-3 w-3" />
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.ojp.gov/faqs" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center text-[#1a4480] hover:text-[#1a4480]/80"
+                  >
+                    Frequently Asked Questions
+                    <ExternalLink className="ml-1 h-3 w-3" />
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="https://www.ojp.gov/contact-us" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center text-[#1a4480] hover:text-[#1a4480]/80"
+                  >
+                    Contact Information
+                    <ExternalLink className="ml-1 h-3 w-3" />
+                  </a>
+                </li>
               </ul>
             </CardContent>
           </Card>
