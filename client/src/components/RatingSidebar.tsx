@@ -31,7 +31,7 @@ export function RatingSidebar() {
   return (
     <>
       {/* Rate this page button - Left side */}
-      <div className="fixed left-0 bottom-20 p-2 z-50">
+      <div className="fixed left-0 bottom-40 p-2 z-[100]">
         <Button
           variant="outline"
           size="icon"
@@ -46,7 +46,7 @@ export function RatingSidebar() {
       </div>
 
       {/* Top button - Right side */}
-      <div className="fixed right-0 bottom-20 p-2 z-50">
+      <div className="fixed right-0 bottom-40 p-2 z-[100]">
         <Button
           variant="outline"
           size="icon"
