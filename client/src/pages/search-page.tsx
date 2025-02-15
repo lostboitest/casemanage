@@ -18,8 +18,8 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <main className="max-w-7xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <main className="max-w-7xl mx-auto px-4 py-8 flex-1">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {/* Search Card */}
           <Card className="md:col-span-2 lg:col-span-3">
@@ -132,6 +132,57 @@ export default function SearchPage() {
           </Card>
         </div>
       </main>
+
+      {/* Footer */}
+      <footer className="mt-auto border-t border-gray-200 bg-white">
+        <div className="max-w-7xl mx-auto px-4 py-6">
+          <div className="text-center text-sm text-gray-600 mb-4">
+            999 N. Capitol St., NE, Washington, DC 20531
+          </div>
+          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[#1a4480]">
+            <li>
+              <a href="https://www.ojp.gov/accessibility" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Accessibility
+              </a>
+            </li>
+            <li>
+              <a href="https://www.ojp.gov/plain-language" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Plain Language
+              </a>
+            </li>
+            <li>
+              <a href="https://www.ojp.gov/privacy-policy" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="https://www.ojp.gov/legal-policies-and-disclaimers" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Legal Policies and Disclaimer
+              </a>
+            </li>
+            <li>
+              <a href="https://www.ojp.gov/about/no-fear-act" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                No FEAR Act
+              </a>
+            </li>
+            <li>
+              <a href="https://www.ojp.gov/freedom-information-act-foia" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Freedom of Information Act
+              </a>
+            </li>
+            <li>
+              <a href="https://www.usa.gov" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                USA.gov
+              </a>
+            </li>
+            <li>
+              <a href="https://www.justice.gov" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                Justice.gov
+              </a>
+            </li>
+          </ul>
+        </div>
+      </footer>
     </div>
   );
 }
