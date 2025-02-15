@@ -1,8 +1,11 @@
 import { Info } from "lucide-react";
+import { OfficialBanner } from "./OfficialBanner";
 
 export function SiteHeader() {
   return (
     <div className="w-full">
+      <OfficialBanner />
+
       {/* Official Notice Banner */}
       <div className="bg-yellow-50 border-b border-yellow-100 p-4">
         <div className="max-w-7xl mx-auto flex items-start gap-3">
@@ -22,7 +25,17 @@ export function SiteHeader() {
       {/* Main Header */}
       <header className="bg-[#1a4480] text-white">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold mb-2">Case Management System</h1>
+          <div className="flex items-center gap-4 mb-4">
+            <img
+              src="/doj-seal.png"
+              alt="Department of Justice seal"
+              className="w-16 h-16"
+            />
+            <div>
+              <div className="text-sm font-medium mb-1">U.S. DEPARTMENT OF JUSTICE</div>
+              <h1 className="text-2xl font-bold">OFFICE OF JUSTICE PROGRAMS</h1>
+            </div>
+          </div>
           <p className="text-white/90">
             Building Solutions | Supporting Communities | Advancing Justice
           </p>
