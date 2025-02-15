@@ -58,9 +58,10 @@ export function SiteHeader() {
                     <Button 
                       variant="ghost" 
                       size="icon"
-                      className="hover:bg-white/10"
+                      className="bg-white/10 hover:bg-white/20"
                     >
                       <Settings className="h-5 w-5 text-white" />
+                      <span className="sr-only">Settings</span>
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
