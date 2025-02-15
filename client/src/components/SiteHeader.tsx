@@ -55,8 +55,12 @@ export function SiteHeader() {
               <div className="flex items-center gap-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="text-white hover:text-white/90">
-                      <Settings className="h-5 w-5" />
+                    <Button 
+                      variant="ghost" 
+                      size="icon"
+                      className="hover:bg-white/10"
+                    >
+                      <Settings className="h-5 w-5 text-white" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
