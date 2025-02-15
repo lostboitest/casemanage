@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ChevronUp, ChevronLeft } from "lucide-react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function RatingSidebar() {
@@ -31,13 +31,13 @@ export function RatingSidebar() {
         <Button
           variant="default"
           size="sm"
-          className="bg-[#005EA2] hover:bg-[#005EA2]/90 text-white rounded-none px-3 py-8 flex items-center gap-1 shadow-md writing-mode-vertical text-sm font-medium"
+          className="bg-[#005EA2] hover:bg-[#005EA2]/90 text-white rounded-none px-2 py-6 flex items-center gap-1 shadow-lg writing-mode-vertical text-xs font-medium tracking-tight"
           onClick={() => {
             // TODO: Implement rating functionality
             alert("Rating functionality coming soon!");
           }}
         >
-          <ChevronLeft className="h-4 w-4" />
+          <ChevronDown className="h-3 w-3 transform rotate-90" />
           Rate This Page
         </Button>
       </div>
@@ -48,13 +48,13 @@ export function RatingSidebar() {
           <Button
             variant="outline"
             size="icon"
-            className="bg-[#F6C51B] hover:bg-[#F6C51B]/90 border-none text-black rounded-full w-14 h-16 shadow-md flex flex-col items-center justify-center gap-1 p-0"
+            className="bg-[#F6C51B] hover:bg-[#F6C51B]/90 border-none text-black rounded-full w-16 h-20 shadow-lg flex flex-col items-center justify-center gap-2 p-0"
             onClick={scrollToTop}
           >
-            <div className="bg-white rounded-full p-2 shadow-sm">
-              <ChevronUp className="h-4 w-4" />
+            <div className="bg-white rounded-full p-2.5 shadow-md">
+              <ChevronUp className="h-3.5 w-3.5" />
             </div>
-            <span className="text-[10px] font-medium mt-1">Top</span>
+            <span className="text-[10px] font-medium">Top</span>
           </Button>
         </div>
       )}
