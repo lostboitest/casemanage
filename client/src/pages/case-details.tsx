@@ -42,7 +42,7 @@ export default function CaseDetails() {
 
   return (
     <div className="min-h-screen p-4">
-      <Card className="max-w-2xl mx-auto">
+      <Card className="max-w-3xl mx-auto">
         <CardHeader>
           <CardTitle className="flex justify-between items-center">
             <span>Case #{caseData.caseNumber}</span>
@@ -55,17 +55,59 @@ export default function CaseDetails() {
             </span>
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-6">
           <div>
-            <h3 className="font-semibold mb-2">{caseData.title}</h3>
+            <h3 className="font-semibold text-lg mb-2">{caseData.title}</h3>
             <p className="text-muted-foreground whitespace-pre-wrap">
               {caseData.description}
             </p>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <h4 className="font-medium mb-2">Petitioner</h4>
+              <p className="text-muted-foreground">{caseData.petitioner}</p>
+            </div>
+            <div>
+              <h4 className="font-medium mb-2">Respondent</h4>
+              <p className="text-muted-foreground">{caseData.respondent}</p>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2">Docketed Date</h4>
+            <p className="text-muted-foreground">
+              {new Date(caseData.docketedDate).toLocaleDateString()}
+            </p>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2">Court Proceedings</h4>
+            <ul className="list-disc pl-5 space-y-1">
+              {caseData.courtProceedings.map((proceeding, index) => (
+                <li key={index} className="text-muted-foreground">
+                  {proceeding}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-medium mb-2">Parties Involved</h4>
+            <ul className="list-disc pl-5 space-y-1">
+              {caseData.partiesInvolved.map((party, index) => (
+                <li key={index} className="text-muted-foreground">
+                  {party}
+                </li>
+              ))}
+            </ul>
+          </div>
+
           <div className="flex justify-between text-sm text-muted-foreground">
             <span>Created: {new Date(caseData.createdAt).toLocaleDateString()}</span>
             <span>Updated: {new Date(caseData.updatedAt).toLocaleDateString()}</span>
           </div>
+
           <Button onClick={() => setLocation("/")} variant="outline">
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Search
