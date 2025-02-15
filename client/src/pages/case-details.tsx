@@ -24,7 +24,7 @@ export default function CaseDetails() {
   if (!caseData) {
     return (
       <div className="min-h-screen p-4">
-        <Card className="max-w-2xl mx-auto">
+        <Card className="max-w-3xl mx-auto">
           <CardContent className="pt-6">
             <h2 className="text-xl font-semibold text-destructive mb-4">Case Not Found</h2>
             <p className="text-muted-foreground mb-4">
@@ -43,67 +43,90 @@ export default function CaseDetails() {
   return (
     <div className="min-h-screen p-4">
       <Card className="max-w-3xl mx-auto">
-        <CardHeader>
-          <CardTitle className="flex justify-between items-center">
-            <span>Case #{caseData.caseNumber}</span>
-            <span className={`text-sm ${
-              caseData.status === "open" ? "text-green-500" :
-              caseData.status === "pending" ? "text-yellow-500" :
-              "text-red-500"
-            }`}>
-              {caseData.status.toUpperCase()}
-            </span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div>
-            <h3 className="font-semibold text-lg mb-2">{caseData.title}</h3>
-            <p className="text-muted-foreground whitespace-pre-wrap">
-              {caseData.description}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <h4 className="font-medium mb-2">Petitioner</h4>
-              <p className="text-muted-foreground">{caseData.petitioner}</p>
+        <CardContent className="space-y-8 pt-6">
+          {/* Section 1: Basic Case Information */}
+          <div className="space-y-6">
+            <div className="flex justify-between items-center">
+              <h2 className="text-2xl font-bold">Case #{caseData.caseNumber}</h2>
+              <span className={`text-sm font-medium px-3 py-1 rounded-full ${
+                caseData.status === "open" ? "bg-green-100 text-green-700" :
+                caseData.status === "pending" ? "bg-yellow-100 text-yellow-700" :
+                "bg-red-100 text-red-700"
+              }`}>
+                {caseData.status.toUpperCase()}
+              </span>
             </div>
+
             <div>
-              <h4 className="font-medium mb-2">Respondent</h4>
-              <p className="text-muted-foreground">{caseData.respondent}</p>
+              <h3 className="text-xl font-semibold mb-2">{caseData.title}</h3>
+              <p className="text-muted-foreground whitespace-pre-wrap">
+                {caseData.description}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-medium text-muted-foreground mb-2">Petitioner</h4>
+                <p className="text-lg">{caseData.petitioner}</p>
+              </div>
+              <div>
+                <h4 className="font-medium text-muted-foreground mb-2">Respondent</h4>
+                <p className="text-lg">{caseData.respondent}</p>
+              </div>
+            </div>
+
+            <div>
+              <h4 className="font-medium text-muted-foreground mb-2">Docketed Date</h4>
+              <p className="text-lg">
+                {new Date(caseData.docketedDate).toLocaleDateString()}
+              </p>
             </div>
           </div>
 
-          <div>
-            <h4 className="font-medium mb-2">Docketed Date</h4>
-            <p className="text-muted-foreground">
-              {new Date(caseData.docketedDate).toLocaleDateString()}
-            </p>
-          </div>
-
-          <div>
-            <h4 className="font-medium mb-2">Court Proceedings</h4>
-            <ul className="list-disc pl-5 space-y-1">
+          {/* Section 2: Court Proceedings */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">Court Proceedings</h3>
+            <div className="space-y-4">
               {caseData.courtProceedings.map((proceeding, index) => (
-                <li key={index} className="text-muted-foreground">
-                  {proceeding}
-                </li>
+                <div key={index} className="bg-muted/50 p-4 rounded-lg">
+                  <div className="flex justify-between items-start mb-2">
+                    <span className="font-medium">
+                      {new Date(proceeding.date).toLocaleDateString()}
+                    </span>
+                  </div>
+                  <p className="text-muted-foreground">{proceeding.description}</p>
+                </div>
               ))}
-            </ul>
+              {caseData.courtProceedings.length === 0 && (
+                <p className="text-muted-foreground italic">No proceedings recorded</p>
+              )}
+            </div>
           </div>
 
-          <div>
-            <h4 className="font-medium mb-2">Parties Involved</h4>
-            <ul className="list-disc pl-5 space-y-1">
+          {/* Section 3: Parties Involved */}
+          <div className="space-y-4">
+            <h3 className="text-xl font-semibold">Parties Involved</h3>
+            <div className="grid gap-4 md:grid-cols-2">
               {caseData.partiesInvolved.map((party, index) => (
-                <li key={index} className="text-muted-foreground">
-                  {party}
-                </li>
+                <div key={index} className="bg-muted/50 p-4 rounded-lg">
+                  <h4 className="font-medium mb-2">{party.name}</h4>
+                  <div className="space-y-1 text-sm">
+                    <p className="text-muted-foreground">
+                      <span className="font-medium">Role:</span> {party.role}
+                    </p>
+                    <p className="text-muted-foreground">
+                      <span className="font-medium">Contact:</span> {party.contact}
+                    </p>
+                  </div>
+                </div>
               ))}
-            </ul>
+              {caseData.partiesInvolved.length === 0 && (
+                <p className="text-muted-foreground italic">No parties recorded</p>
+              )}
+            </div>
           </div>
 
-          <div className="flex justify-between text-sm text-muted-foreground">
+          <div className="flex justify-between text-sm text-muted-foreground pt-4 border-t">
             <span>Created: {new Date(caseData.createdAt).toLocaleDateString()}</span>
             <span>Updated: {new Date(caseData.updatedAt).toLocaleDateString()}</span>
           </div>

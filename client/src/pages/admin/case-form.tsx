@@ -91,16 +91,35 @@ export default function CaseForm() {
     }
   };
 
-  const addArrayField = (fieldName: "courtProceedings" | "partiesInvolved") => {
-    const currentValues = form.getValues(fieldName) || [];
-    form.setValue(fieldName, [...currentValues, ""]);
+  const addProceeding = () => {
+    const currentProceedings = form.getValues("courtProceedings") || [];
+    form.setValue("courtProceedings", [
+      ...currentProceedings,
+      { date: new Date().toISOString().split('T')[0], description: "" }
+    ]);
   };
 
-  const removeArrayField = (fieldName: "courtProceedings" | "partiesInvolved", index: number) => {
-    const currentValues = form.getValues(fieldName) || [];
+  const removeProceeding = (index: number) => {
+    const currentProceedings = form.getValues("courtProceedings") || [];
     form.setValue(
-      fieldName,
-      currentValues.filter((_, i) => i !== index)
+      "courtProceedings",
+      currentProceedings.filter((_, i) => i !== index)
+    );
+  };
+
+  const addParty = () => {
+    const currentParties = form.getValues("partiesInvolved") || [];
+    form.setValue("partiesInvolved", [
+      ...currentParties,
+      { name: "", role: "", contact: "" }
+    ]);
+  };
+
+  const removeParty = (index: number) => {
+    const currentParties = form.getValues("partiesInvolved") || [];
+    form.setValue(
+      "partiesInvolved",
+      currentParties.filter((_, i) => i !== index)
     );
   };
 
@@ -124,19 +143,78 @@ export default function CaseForm() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+              {/* Section 1: Basic Case Information */}
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold">Basic Case Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="caseNumber"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Case Number</FormLabel>
+                        <FormControl>
+                          <Input
+                            {...field}
+                            disabled={isEditing}
+                            placeholder="Enter case number..."
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="status"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Status</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select status" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="open">Open</SelectItem>
+                            <SelectItem value="pending">Pending</SelectItem>
+                            <SelectItem value="closed">Closed</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
                 <FormField
                   control={form.control}
-                  name="caseNumber"
+                  name="title"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Case Number</FormLabel>
+                      <FormLabel>Title</FormLabel>
                       <FormControl>
-                        <Input
+                        <Input {...field} placeholder="Enter case title..." />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Textarea
                           {...field}
-                          disabled={isEditing}
-                          placeholder="Enter case number..."
+                          placeholder="Enter case description..."
+                          className="min-h-[100px]"
                         />
                       </FormControl>
                       <FormMessage />
@@ -144,67 +222,44 @@ export default function CaseForm() {
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="status"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Status</FormLabel>
-                      <Select onValueChange={field.onChange} value={field.value}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <FormField
+                    control={form.control}
+                    name="petitioner"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Petitioner</FormLabel>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select status" />
-                          </SelectTrigger>
+                          <Input {...field} placeholder="Enter petitioner name..." />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="open">Open</SelectItem>
-                          <SelectItem value="pending">Pending</SelectItem>
-                          <SelectItem value="closed">Closed</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Title</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="Enter case title..." />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="petitioner"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Petitioner</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="Enter petitioner name..." />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                  <FormField
+                    control={form.control}
+                    name="respondent"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Respondent</FormLabel>
+                        <FormControl>
+                          <Input {...field} placeholder="Enter respondent name..." />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
 
                 <FormField
                   control={form.control}
-                  name="respondent"
+                  name="docketedDate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Respondent</FormLabel>
+                      <FormLabel>Docketed Date</FormLabel>
                       <FormControl>
-                        <Input {...field} placeholder="Enter respondent name..." />
+                        <Input type="date" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -212,114 +267,135 @@ export default function CaseForm() {
                 />
               </div>
 
-              <FormField
-                control={form.control}
-                name="docketedDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Docketed Date</FormLabel>
-                    <FormControl>
-                      <Input type="date" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        {...field}
-                        placeholder="Enter case description..."
-                        className="min-h-[100px]"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="space-y-2">
+              {/* Section 2: Court Proceedings */}
+              <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <FormLabel>Court Proceedings</FormLabel>
+                  <h3 className="text-lg font-semibold">Court Proceedings</h3>
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
-                    onClick={() => addArrayField("courtProceedings")}
+                    onClick={addProceeding}
                   >
                     <Plus className="h-4 w-4 mr-1" /> Add Proceeding
                   </Button>
                 </div>
-                {form.watch("courtProceedings")?.map((_, index) => (
-                  <FormField
-                    key={index}
-                    control={form.control}
-                    name={`courtProceedings.${index}`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className="flex gap-2">
-                            <Input {...field} placeholder="Enter court proceeding..." />
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => removeArrayField("courtProceedings", index)}
-                            >
-                              <X className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                ))}
+
+                <div className="space-y-4">
+                  {form.watch("courtProceedings")?.map((proceeding, index) => (
+                    <div key={index} className="flex gap-4 items-start">
+                      <div className="flex-1 space-y-4">
+                        <FormField
+                          control={form.control}
+                          name={`courtProceedings.${index}.date`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Date</FormLabel>
+                              <FormControl>
+                                <Input type="date" {...field} />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name={`courtProceedings.${index}.description`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Description</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="Enter proceeding details..." />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="mt-8"
+                        onClick={() => removeProceeding(index)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="space-y-2">
+              {/* Section 3: Parties Involved */}
+              <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <FormLabel>Parties Involved</FormLabel>
+                  <h3 className="text-lg font-semibold">Parties Involved</h3>
                   <Button
                     type="button"
                     variant="outline"
                     size="sm"
-                    onClick={() => addArrayField("partiesInvolved")}
+                    onClick={addParty}
                   >
                     <Plus className="h-4 w-4 mr-1" /> Add Party
                   </Button>
                 </div>
-                {form.watch("partiesInvolved")?.map((_, index) => (
-                  <FormField
-                    key={index}
-                    control={form.control}
-                    name={`partiesInvolved.${index}`}
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormControl>
-                          <div className="flex gap-2">
-                            <Input {...field} placeholder="Enter party name..." />
-                            <Button
-                              type="button"
-                              variant="ghost"
-                              size="icon"
-                              onClick={() => removeArrayField("partiesInvolved", index)}
-                            >
-                              <X className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                ))}
+
+                <div className="space-y-4">
+                  {form.watch("partiesInvolved")?.map((party, index) => (
+                    <div key={index} className="flex gap-4 items-start">
+                      <div className="flex-1 space-y-4">
+                        <FormField
+                          control={form.control}
+                          name={`partiesInvolved.${index}.name`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Name</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="Enter party name..." />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name={`partiesInvolved.${index}.role`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Role</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="Enter party role..." />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                        <FormField
+                          control={form.control}
+                          name={`partiesInvolved.${index}.contact`}
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel>Contact Information</FormLabel>
+                              <FormControl>
+                                <Input {...field} placeholder="Enter contact information..." />
+                              </FormControl>
+                              <FormMessage />
+                            </FormItem>
+                          )}
+                        />
+                      </div>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="mt-8"
+                        onClick={() => removeParty(index)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <Button type="submit" className="w-full">
