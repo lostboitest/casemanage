@@ -9,15 +9,17 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { insertUserSchema } from "@shared/schema";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 
 export default function AuthPage() {
   const { user, loginMutation, registerMutation } = useAuth();
   const [, setLocation] = useLocation();
 
-  if (user) {
-    setLocation("/admin");
-    return null;
-  }
+  useEffect(() => {
+    if (user) {
+      setLocation("/admin");
+    }
+  }, [user, setLocation]);
 
   const loginForm = useForm({
     resolver: zodResolver(insertUserSchema),
@@ -34,6 +36,10 @@ export default function AuthPage() {
       password: "",
     },
   });
+
+  if (user) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-background flex">
