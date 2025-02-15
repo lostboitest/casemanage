@@ -12,29 +12,44 @@ if (!process.env.DATABASE_URL) {
   );
 }
 
-// Create a connection pool with error handling
+// Create a pool with SSL configuration
 export const pool = new Pool({ 
   connectionString: process.env.DATABASE_URL,
-  connectionTimeoutMillis: 5000, // 5 second timeout
-  idleTimeoutMillis: 30000, // 30 seconds before idle clients are closed
-  max: 20 // maximum number of clients in the pool
-});
-
-// Add error handler for the pool
-pool.on('error', (err) => {
-  console.error('Unexpected error on idle client', err);
-  process.exit(-1);
+  ssl: {
+    rejectUnauthorized: false
+  },
+  max: 5, // Reduce max connections
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 5000
 });
 
 // Initialize Drizzle with the pool and schema
 export const db = drizzle(pool, { schema });
 
-// Test the connection
-pool.connect()
-  .then(() => {
-    console.log('Successfully connected to database');
-  })
-  .catch((err) => {
-    console.error('Error connecting to the database:', err);
-    throw err;
+// Test database connection with retries
+async function testConnection(retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const client = await pool.connect();
+      console.log('Successfully connected to database');
+      const result = await client.query('SELECT NOW()');
+      console.log('Database time:', result.rows[0].now);
+      client.release();
+      return true;
+    } catch (error) {
+      console.error(`Database connection attempt ${i + 1} failed:`, error);
+      if (i === retries - 1) {
+        process.exit(1);
+      }
+      await new Promise(resolve => setTimeout(resolve, 2000)); // Wait 2 seconds before retry
+    }
+  }
+  return false;
+}
+
+// Run the test immediately
+testConnection()
+  .catch(err => {
+    console.error('Failed to connect to database:', err);
+    process.exit(1);
   });

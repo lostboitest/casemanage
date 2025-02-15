@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp, jsonb } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, jsonb, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -8,7 +8,9 @@ export const users = pgTable("users", {
   username: text("username").notNull().unique(),
   password: text("password").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  usernameIdx: index("username_idx").on(table.username),
+}));
 
 // Rest of the schema remains unchanged
 export const cases = pgTable("cases", {
@@ -24,7 +26,9 @@ export const cases = pgTable("cases", {
   partiesInvolved: jsonb("parties_involved").$type<Party[]>(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
+}, (table) => ({
+  caseNumberIdx: index("case_number_idx").on(table.caseNumber),
+}));
 
 // User schema validation
 export const insertUserSchema = createInsertSchema(users);
