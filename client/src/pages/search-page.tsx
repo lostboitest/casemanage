@@ -138,23 +138,41 @@ export default function SearchPage() {
         <div className="max-w-7xl mx-auto px-4 py-6">
           {/* Agency Logos */}
           <div className="flex justify-center gap-8 mb-6">
-            <a href="https://bja.ojp.gov/" target="_blank" rel="noopener noreferrer">
-              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/bja_0.png" alt="BJA Logo" className="h-8" />
+            <a href="https://bja.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                      fill="#162e51" fontSize="24" fontWeight="bold">BJA</text>
+              </svg>
             </a>
-            <a href="https://bjs.ojp.gov/" target="_blank" rel="noopener noreferrer">
-              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/bjs.png" alt="BJS Logo" className="h-8" />
+            <a href="https://bjs.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                      fill="#162e51" fontSize="24" fontWeight="bold">BJS</text>
+              </svg>
             </a>
-            <a href="https://nij.ojp.gov/" target="_blank" rel="noopener noreferrer">
-              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/nij.png" alt="NIJ Logo" className="h-8" />
+            <a href="https://nij.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                      fill="#162e51" fontSize="24" fontWeight="bold">NIJ</text>
+              </svg>
             </a>
-            <a href="https://ojjdp.ojp.gov/" target="_blank" rel="noopener noreferrer">
-              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/ojjdp.png" alt="OJJDP Logo" className="h-8" />
+            <a href="https://ojjdp.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                      fill="#162e51" fontSize="24" fontWeight="bold">OJJDP</text>
+              </svg>
             </a>
-            <a href="https://ovc.ojp.gov/" target="_blank" rel="noopener noreferrer">
-              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/ovc.png" alt="OVC Logo" className="h-8" />
+            <a href="https://ovc.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                      fill="#162e51" fontSize="24" fontWeight="bold">OVC</text>
+              </svg>
             </a>
-            <a href="https://smart.ojp.gov/" target="_blank" rel="noopener noreferrer">
-              <img src="https://www.ojp.gov/sites/g/files/xyckuh241/files/media/image/smart.png" alt="SMART Logo" className="h-8" />
+            <a href="https://smart.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
+                <text x="50%" y="50%" dominantBaseline="middle" textAnchor="middle" 
+                      fill="#162e51" fontSize="24" fontWeight="bold">SMART</text>
+              </svg>
             </a>
           </div>
 
