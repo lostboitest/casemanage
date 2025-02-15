@@ -3,7 +3,11 @@ import { db } from "./db";
 import { eq } from "drizzle-orm";
 import session from "express-session";
 import connectPg from "connect-pg-simple";
-import { pool } from "./db";
+import { neonConfig } from '@neondatabase/serverless';
+import { WebSocket } from 'ws';
+
+// Enable WebSocket pooling for Neon database
+neonConfig.webSocketConstructor = WebSocket;
 
 const PostgresSessionStore = connectPg(session);
 
@@ -27,8 +31,12 @@ export class DatabaseStorage implements IStorage {
 
   constructor() {
     this.sessionStore = new PostgresSessionStore({
-      pool,
+      conObject: {
+        connectionString: process.env.DATABASE_URL,
+        ssl: true,
+      },
       createTableIfMissing: true,
+      pruneSessionInterval: false,
     });
   }
 
