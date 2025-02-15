@@ -8,6 +8,7 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  updateUser(id: number, data: Partial<InsertUser>): Promise<User>;
 
   getCases(): Promise<Case[]>;
   getCase(id: number): Promise<Case | undefined>;
@@ -154,6 +155,26 @@ export class DatabaseStorage implements IStorage {
       } catch (error) {
         console.error('Error deleting case:', error);
         throw new Error('Failed to delete case');
+      }
+    });
+  }
+  async updateUser(id: number, data: Partial<InsertUser>): Promise<User> {
+    return this.executeWithRetry(async () => {
+      try {
+        const [user] = await db
+          .update(users)
+          .set(data)
+          .where(eq(users.id, id))
+          .returning();
+
+        if (!user) {
+          throw new Error("User not found");
+        }
+
+        return user;
+      } catch (error) {
+        console.error('Error updating user:', error);
+        throw new Error('Failed to update user');
       }
     });
   }
