@@ -137,7 +137,38 @@ export default function SearchPage() {
       <footer className="mt-auto border-t border-gray-200 bg-white">
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex justify-between items-center gap-12">
-            {/* Left side - Agency Logos */}
+            {/* Left side - DOJ Logo and Text */}
+            <div className="flex items-center gap-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 150 150" className="w-24 h-24">
+                {/* DOJ Eagle Circle */}
+                <circle cx="75" cy="75" r="70" fill="#ffffff"/>
+                <circle cx="75" cy="75" r="65" fill="#1a4480"/>
+                <circle cx="75" cy="75" r="60" fill="#ffffff"/>
+
+                {/* DOJ Eagle */}
+                <path fill="#1a4480" d="M75 25C45 25 25 45 25 75C25 105 45 125 75 125C105 125 125 105 125 75C125 45 105 25 75 25zM75 115C50 115 35 100 35 75C35 50 50 35 75 35C100 35 115 50 115 75C115 100 100 115 75 115z"/>
+
+                {/* Stars */}
+                <g fill="#1a4480">
+                  <circle cx="75" cy="45" r="3"/>
+                  <circle cx="105" cy="75" r="3"/>
+                  <circle cx="75" cy="105" r="3"/>
+                  <circle cx="45" cy="75" r="3"/>
+                </g>
+              </svg>
+              <div>
+                <div className="text-sm font-semibold tracking-wide uppercase mb-1">U.S. DEPARTMENT OF JUSTICE</div>
+                <h1 className="text-3xl font-bold tracking-wide mb-2">OFFICE OF JUSTICE PROGRAMS</h1>
+                <p className="text-sm text-gray-600">
+                  Building Solutions | Supporting Communities | Advancing Justice
+                </p>
+              </div>
+            </div>
+
+            {/* Vertical Divider */}
+            <div className="w-px h-20 bg-black"></div>
+
+            {/* Right side - Agency Logos */}
             <div className="flex flex-wrap gap-8">
               <a href="https://bja.ojp.gov/" target="_blank" rel="noopener noreferrer" className="hover:opacity-80">
                 <svg xmlns="http://www.w3.org/2000/svg" width="96" height="32" viewBox="0 0 96 32">
@@ -175,37 +206,6 @@ export default function SearchPage() {
                         fill="#162e51" fontSize="24" fontWeight="bold">SMART</text>
                 </svg>
               </a>
-            </div>
-
-            {/* Vertical Divider */}
-            <div className="w-px h-20 bg-black"></div>
-
-            {/* Right side - DOJ Logo and Text */}
-            <div className="flex items-center gap-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 150 150" className="w-24 h-24">
-                {/* DOJ Eagle Circle */}
-                <circle cx="75" cy="75" r="70" fill="#ffffff"/>
-                <circle cx="75" cy="75" r="65" fill="#1a4480"/>
-                <circle cx="75" cy="75" r="60" fill="#ffffff"/>
-
-                {/* DOJ Eagle */}
-                <path fill="#1a4480" d="M75 25C45 25 25 45 25 75C25 105 45 125 75 125C105 125 125 105 125 75C125 45 105 25 75 25zM75 115C50 115 35 100 35 75C35 50 50 35 75 35C100 35 115 50 115 75C115 100 100 115 75 115z"/>
-
-                {/* Stars */}
-                <g fill="#1a4480">
-                  <circle cx="75" cy="45" r="3"/>
-                  <circle cx="105" cy="75" r="3"/>
-                  <circle cx="75" cy="105" r="3"/>
-                  <circle cx="45" cy="75" r="3"/>
-                </g>
-              </svg>
-              <div>
-                <div className="text-sm font-semibold tracking-wide uppercase mb-1">U.S. DEPARTMENT OF JUSTICE</div>
-                <h1 className="text-3xl font-bold tracking-wide mb-2">OFFICE OF JUSTICE PROGRAMS</h1>
-                <p className="text-sm text-gray-600">
-                  Building Solutions | Supporting Communities | Advancing Justice
-                </p>
-              </div>
             </div>
           </div>
 
