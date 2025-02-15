@@ -9,13 +9,9 @@ export function RatingSidebar() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Show top button only after scrolling past resources section
+  // Show top button after scrolling down 100px
   const handleScroll = () => {
-    const resourcesSection = document.querySelector('#resources-section');
-    if (resourcesSection) {
-      const resourcesPosition = resourcesSection.getBoundingClientRect().top;
-      setShowTopButton(resourcesPosition < 0);
-    }
+    setShowTopButton(window.scrollY > 100);
   };
 
   // Add scroll event listener
