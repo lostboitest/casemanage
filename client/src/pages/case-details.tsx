@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useLocation } from "wouter";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Loader2, ArrowLeft } from "lucide-react";
+import { Loader2, ArrowLeft, Download } from "lucide-react";
 import type { Case } from "@shared/schema";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import CasePDF from "@/components/CasePDF";
 
 export default function CaseDetails() {
   const { caseNumber } = useParams();
@@ -44,6 +46,24 @@ export default function CaseDetails() {
     <div className="min-h-screen p-4">
       <Card className="max-w-3xl mx-auto">
         <CardContent className="space-y-8 pt-6">
+          <div className="flex justify-between items-center">
+            <Button onClick={() => setLocation("/")} variant="outline">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Search
+            </Button>
+            <PDFDownloadLink
+              document={<CasePDF caseData={caseData} />}
+              fileName={`case-${caseData.caseNumber}.pdf`}
+            >
+              {({ loading }) => (
+                <Button variant="outline" disabled={loading}>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download PDF
+                </Button>
+              )}
+            </PDFDownloadLink>
+          </div>
+
           {/* Section 1: Basic Case Information */}
           <div className="space-y-6">
             <div className="flex justify-between items-center">
@@ -125,16 +145,6 @@ export default function CaseDetails() {
               )}
             </div>
           </div>
-
-          <div className="flex justify-between text-sm text-muted-foreground pt-4 border-t">
-            <span>Created: {new Date(caseData.createdAt).toLocaleDateString()}</span>
-            <span>Updated: {new Date(caseData.updatedAt).toLocaleDateString()}</span>
-          </div>
-
-          <Button onClick={() => setLocation("/")} variant="outline">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Search
-          </Button>
         </CardContent>
       </Card>
     </div>
