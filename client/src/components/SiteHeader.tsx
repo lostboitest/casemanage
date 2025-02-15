@@ -24,17 +24,19 @@ export function SiteHeader() {
 
       {/* Main Header */}
       <header className="bg-[#1a4480] text-white">
-        <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center gap-6">
-            <img
-              src="/doj-seal.svg"
-              alt="Department of Justice seal"
-              className="w-20 h-20"
-            />
+        <div className="max-w-7xl mx-auto px-4 py-8">
+          <div className="flex items-center gap-8">
+            <div className="flex-shrink-0">
+              <img
+                src="https://www.ojp.gov/themes/custom/ojp/assets/images/ojp-seal.png"
+                alt="Department of Justice seal"
+                className="w-24 h-24"
+              />
+            </div>
             <div>
-              <div className="text-sm font-medium tracking-wider">U.S. DEPARTMENT OF JUSTICE</div>
-              <h1 className="text-3xl font-bold tracking-wide">OFFICE OF JUSTICE PROGRAMS</h1>
-              <p className="text-sm text-white/90 mt-2">
+              <div className="text-sm font-semibold tracking-wide uppercase mb-1">U.S. DEPARTMENT OF JUSTICE</div>
+              <h1 className="text-3xl font-bold tracking-wide mb-2">OFFICE OF JUSTICE PROGRAMS</h1>
+              <p className="text-sm text-white/90">
                 Building Solutions | Supporting Communities | Advancing Justice
               </p>
             </div>
