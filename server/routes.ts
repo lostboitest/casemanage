@@ -7,7 +7,12 @@ import { z } from "zod";
 
 function requireAuth(req: Express.Request, res: Express.Response, next: Express.NextFunction) {
   if (!req.isAuthenticated()) {
-    return res.status(401).json({ message: "Unauthorized" });
+    // API requests should return JSON
+    if (req.headers.accept?.includes('application/json')) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+    // Browser requests should return error message
+    return res.status(401).send("You must be logged in to access this page");
   }
   next();
 }
@@ -30,8 +35,13 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Protected routes
   app.get("/api/cases", requireAuth, async (_req, res) => {
-    const cases = await storage.getCases();
-    res.json(cases);
+    try {
+      const cases = await storage.getCases();
+      res.json(cases);
+    } catch (error) {
+      console.error('Error fetching cases:', error);
+      res.status(500).json({ message: "Failed to fetch cases" });
+    }
   });
 
   app.post("/api/cases", requireAuth, async (req, res) => {
