@@ -25,20 +25,20 @@ export function SiteHeader() {
       {/* Main Header */}
       <header className="bg-[#1a4480] text-white">
         <div className="max-w-7xl mx-auto px-4 py-6">
-          <div className="flex items-center gap-4 mb-4">
+          <div className="flex items-center gap-6">
             <img
-              src="/doj-seal.png"
+              src="/doj-seal.svg"
               alt="Department of Justice seal"
-              className="w-16 h-16"
+              className="w-20 h-20"
             />
             <div>
-              <div className="text-sm font-medium mb-1">U.S. DEPARTMENT OF JUSTICE</div>
-              <h1 className="text-2xl font-bold">OFFICE OF JUSTICE PROGRAMS</h1>
+              <div className="text-sm font-medium tracking-wider">U.S. DEPARTMENT OF JUSTICE</div>
+              <h1 className="text-3xl font-bold tracking-wide">OFFICE OF JUSTICE PROGRAMS</h1>
+              <p className="text-sm text-white/90 mt-2">
+                Building Solutions | Supporting Communities | Advancing Justice
+              </p>
             </div>
           </div>
-          <p className="text-white/90">
-            Building Solutions | Supporting Communities | Advancing Justice
-          </p>
         </div>
       </header>
     </div>
