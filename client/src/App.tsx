@@ -21,7 +21,9 @@ function Router() {
       <ProtectedRoute path="/admin" component={AdminDashboard} />
       <ProtectedRoute path="/admin/case/new" component={CaseForm} />
       <ProtectedRoute path="/admin/case/:id/edit" component={CaseForm} />
-      <ProtectedRoute path="/admin/profile" component={ProfileSettings} />
+      <Route path="/admin/profile">
+        <ProtectedRoute path="/admin/profile" component={ProfileSettings} />
+      </Route>
       <Route component={NotFound} />
     </Switch>
   );
